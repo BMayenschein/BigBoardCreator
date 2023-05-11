@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" href="css/reset.css">
+    <link rel="stylesheet" href="css/ranked.css">
+    <title>Big Board</title>
+</head>
+<body>
+    <h1>Players</h1>
+
+    <div class="menu-container">
+        <% playerArr.forEach(player =>{ %>
+            <div class="menu">
+                <span class="menu-item"><%=player.firstName%></span>
+                <span class="menu-item"><%=player.lastName%></span>
+                <span class="menu-item"><%=player.position%></span>
+            </div>
+        <%}) %>
+    </div>
+
+    <div class="board-container">
+    
+    </div> 
+    <script src="js/script.js"></script>
+</body>
+</html>
