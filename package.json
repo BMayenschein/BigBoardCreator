@@ -1,0 +1,26 @@
+{
+  "name": "bigboardcreator",
+  "version": "1.0.0",
+  "description": "2023 NBA Draft big board creator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BMayenschein/BigBoardCreator.git"
+  },
+  "author": "Bruce Mayenschein",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BMayenschein/BigBoardCreator/issues"
+  },
+  "homepage": "https://github.com/BMayenschein/BigBoardCreator#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mongodb": "4.1",
+    "mongoose": "^7.1.0"
+  }
+}

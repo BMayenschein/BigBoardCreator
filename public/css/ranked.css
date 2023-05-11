@@ -1,0 +1,81 @@
+html {
+    background-color: #e3effb;
+}
+body {
+    min-height: 100vh;
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+h1 {
+    flex-basis: 10%;
+}
+
+.menu-container {
+    width: 100%;
+    display: flex;
+    overflow-x: scroll;
+  }
+  
+.menu {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  
+.menu-item {
+    width: 150px;
+    /* height: 50px; */
+    background-color: #ddd;
+    margin-right: 10px;
+    text-align: center;
+    /* line-height: 50px; */
+}
+
+.board-container {
+    flex-grow: 2;
+    /* border: 1px solid black; */
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(10, 80px);
+    grid-auto-flow: column;
+}
+
+.player {
+    /* border: 1px solid black; */
+    background-color: rgb(249, 249, 249);
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 5px;
+    line-height: 75px;
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;
+}
+
+.player span {
+    height: 100%;
+    font-size: 2em;
+    text-align: center;
+}
+
+.playerName {
+    flex-grow: 2;
+}
+.spot {
+    background-color: black;
+    color: white;
+    font-size: 2em;
+    text-align: center;
+}
+
+.position, .spot {
+    width: 15%;
+    min-width: 40px;
+}
+
