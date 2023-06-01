@@ -1,17 +1,19 @@
-let players = document.querySelector('.menu-container')
-console.log(players);
+let players = document.querySelectorAll('.menu')
 
-
-players.addEventListener('click', addToBoard);
+players.forEach(player => addEventListener('click', addToBoard));
 let boardArea = document.querySelector('.board-container')
 
 let count = 0;
 
 function addToBoard(e) {
     if (count < 30) {
-        let fName = e.target.parentElement.childNodes[1].outerText
-        let lName = e.target.parentElement.childNodes[3].outerText
-        let position = e.target.parentElement.childNodes[5].outerText
+        console.log(e.target)
+        let menu = e.target.closest('div');
+        if (!menu) return;
+
+        let fName = menu.childNodes[1].outerText
+        let lName = menu.childNodes[3].outerText
+        let position = menu.childNodes[5].outerText
 
         if (fName != 'Amen' && fName != 'Ausar') {
             fName = `${fName[0]}.`;
@@ -40,3 +42,29 @@ function addToBoard(e) {
         count++;
     }
 }
+
+
+
+const next = document.querySelector('.next');
+const prev = document.querySelector('.previous')
+const track = document.querySelector('.track');
+const cards = document.querySelectorAll('.card');
+const carouselWidth = document.querySelector('.carousel-container').offsetWidth;
+
+let position = 0;
+
+next.addEventListener('click', () => {
+  if (position != Math.floor(cards.length / 5) * -1000){
+  	track.style.transform = `translateX(${position - 1000}px)`;
+  	position = position - 1000;
+      console.log(position);
+  }
+  });
+  
+prev.addEventListener('click', () => {
+	if (position !== 0) {
+  	track.style.transform = `translateX(${position + 1000}px)`;
+  	position = position + 1000;
+    console.log(position);
+  }
+})
