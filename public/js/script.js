@@ -1,4 +1,4 @@
-let players = document.querySelectorAll('.menu')
+let players = document.querySelectorAll('.card')
 
 players.forEach(player => addEventListener('click', addToBoard));
 let boardArea = document.querySelector('.board-container')
@@ -7,13 +7,14 @@ let count = 0;
 
 function addToBoard(e) {
     if (count < 30) {
-        console.log(e.target)
-        let menu = e.target.closest('div');
-        if (!menu) return;
+        console.log(e.target.closest('.card'))
 
-        let fName = menu.childNodes[1].outerText
-        let lName = menu.childNodes[3].outerText
-        let position = menu.childNodes[5].outerText
+        let card = e.target.closest('.card');
+        if (!card) return;
+
+        let fName = card.childNodes[1].childNodes[3].childNodes[1].childNodes[1].outerText
+        let lName = card.childNodes[1].childNodes[3].childNodes[1].childNodes[3].outerText
+        let position = card.childNodes[1].childNodes[3].childNodes[3].childNodes[3].outerText
 
         if (fName != 'Amen' && fName != 'Ausar') {
             fName = `${fName[0]}.`;
