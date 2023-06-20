@@ -55,10 +55,10 @@ const carouselWidth = document.querySelector('.carousel-container').offsetWidth;
 let position = 0;
 
 next.addEventListener('click', () => {
-  if (position != Math.floor(cards.length / 5) * -1000){
+  if (position != Math.floor(cards.length / 5) * -1000 + 1000){
   	track.style.transform = `translateX(${position - 1000}px)`;
-  	position = position - 1000;
-      console.log(position);
+    position = position - 1000;
+    console.log(position);
   }
   });
   
