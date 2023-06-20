@@ -12,9 +12,9 @@
     <div class="carousel-container">
         <div class="carousel-inner">
             <div class="track">
-                <% playerArr.forEach(player => {%>
+                <% playerArr.forEach((player, index) => {%>
                     <div class="card-container">
-                        <div class="card">
+                        <div class="card" data-id="<%=index%>">
                             <div class="col1">
                                 <div class="pImg">
                                     <img src="img/<%=player.firstName%><%=player.lastName%>.png" alt="">
