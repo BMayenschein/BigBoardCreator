@@ -33,3 +33,8 @@ body {
 .list-types section p {
     flex-basis: 80%;
 }
+
+header {
+    display: flex;
+    flex-direction: row;
+}
