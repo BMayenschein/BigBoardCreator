@@ -5,6 +5,7 @@ const prev = document.querySelector('.previous')
 const track = document.querySelector('.track');
 const cards = document.querySelectorAll('.card');
 const carouselWidth = document.querySelector('.carousel-container').offsetWidth;
+const saveButton = document.querySelector('.save');
 
 let count = 0;
 let board = [];
@@ -29,19 +30,11 @@ function swapPlayer(e) {
         else {
             let index1 = player[0].classList[1];
             let index2 = player2.classList[1];
-            // console.log(`index1 is ${index1} index 2 is ${index2}`);
             [board[index1], board[index2]] = [board[index2], board[index1]]
             player[0].classList.remove("selected");
             renderBoard();
         }
     }
-
-    // if (player.classList.contains("selected")) {
-    //     player.classList.remove("selected");
-    // }
-    // else {
-        
-    // }
 }
 
 function removePlayerFromBoard(e) {
@@ -134,4 +127,20 @@ prev.addEventListener('click', () => {
     }
 });
 
+saveButton.addEventListener('click', async () => {
+    try{
+        const sendBoard = await fetch('ranked/saveBoard', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                'board': board
+            }),
+        });
+    }
+    catch (error) {
+        console.error("Error:", error);
+    }
+})
 console.log(board);
