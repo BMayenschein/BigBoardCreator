@@ -8,8 +8,18 @@
     <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
-    <div class="container">
+    <header>
         <h1>NBA Big Board Creator</h1>
+
+        <% if (user) { %>
+            <form method="post" action="/auth/logout" id="logout">
+                <input type="submit" value="logout">
+            </form>
+            <%} else { %>
+                <a href="/auth/login">Login</a>
+            <% } %>
+    </header>
+    <div class="container">
         <section class="list-types">
             <section class="ranked">
                 <a href="/ranked">Create Ranked List</a>
