@@ -1,0 +1,45 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/login.css">
+    </head>
+    <body>
+        <div class="container">
+            <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
+                <div><%=el.msg %></div>
+            <% }) %> <% } %> <% if (locals.messages.info) { %> 
+            <% messages.info.forEach( el => { %>
+            <div><%=el.msg %></div>
+            <%})}%>
+
+            <form action="/auth/login" method="POST">
+                <div>
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input
+                    type="email"
+                    class="form-control"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    name="email"
+                />
+                </div>
+                <div>
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input
+                    type="password"
+                    class="form-control"
+                    id="exampleInputPassword1"
+                    name="password"
+                />
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+            <a href="/auth/signup">Don't have an account? Signup here!</a>
+        </div>
+    </body>
+</html>
