@@ -43,6 +43,7 @@ function removePlayerFromBoard(e) {
     let index = player.classList[1];
     board.splice(index, 1);
     renderBoard();
+    saveBoard();
 }
 
 async function renderBoard() {
@@ -111,6 +112,7 @@ async function addToBoard(e) {
             console.error("Error:", error);
         }
     }
+    saveBoard();
 }
 
 async function getUserBoard() {
@@ -139,7 +141,7 @@ prev.addEventListener('click', () => {
     }
 });
 
-saveButton.addEventListener('click', async () => {
+async function saveBoard() {
     try{
         const sendBoard = await fetch('../ranked/saveBoard', {
             method: "POST",
@@ -154,7 +156,7 @@ saveButton.addEventListener('click', async () => {
     catch (error) {
         console.error("Error:", error);
     }
-})
+}
 
 window.onload = getUserBoard()
 console.log(board);
