@@ -12,6 +12,16 @@ module.exports = {
         }
     },
 
+    getUserBoard: async (req,res)=>{
+        try{
+            let usersBoard = await UserBoard.findOne({madeBy: req.user._id})
+            res.send(usersBoard.board);
+        }
+        catch(err){
+            console.log(err);
+        }
+    },
+
     addToBoard: async (req,res)=> {
         try{
             const players = await playerInfo.find();
