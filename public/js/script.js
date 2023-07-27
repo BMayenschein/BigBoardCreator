@@ -94,7 +94,7 @@ async function addToBoard(e) {
         if (!card) return;
         let index = card.dataset.id;
         try{
-            const response = await fetch('ranked/addToBoard', {
+            const response = await fetch('../ranked/addToBoard', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -113,6 +113,18 @@ async function addToBoard(e) {
     }
 }
 
+async function getUserBoard() {
+    try {
+        let res = await fetch('../ranked/getUserBoard')
+        const usersBoard = await res.json();
+        board = usersBoard;
+    }
+    catch(err) {
+        console.log(err)
+    }
+    renderBoard();
+}
+
 next.addEventListener('click', () => {
     if (position != Math.floor(cards.length / 5) * -1000 + 1000){
         track.style.transform = `translateX(${position - 1000}px)`;
@@ -129,7 +141,7 @@ prev.addEventListener('click', () => {
 
 saveButton.addEventListener('click', async () => {
     try{
-        const sendBoard = await fetch('ranked/saveBoard', {
+        const sendBoard = await fetch('../ranked/saveBoard', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -143,4 +155,6 @@ saveButton.addEventListener('click', async () => {
         console.error("Error:", error);
     }
 })
+
+window.onload = getUserBoard()
 console.log(board);
