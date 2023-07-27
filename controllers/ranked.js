@@ -13,8 +13,14 @@ module.exports = {
     },
 
     getUserBoard: async (req,res)=>{
+        if (!req.user) {
+            return
+        }
         try{
             let usersBoard = await UserBoard.findOne({madeBy: req.user._id})
+            if (!usersBoard) {
+                return
+            }
             res.send(usersBoard.board);
         }
         catch(err){
@@ -33,24 +39,34 @@ module.exports = {
     },
 
     saveBoard: async (req,res) => {
-        try {
-            let board = await req.body.board
-            res.sendStatus(200);
-        }
-        catch(err) {
-            console.log(err);
+        if (!req.user) {
+            res.send('User not logged in')
+            return
         }
 
-        const userBoard = new UserBoard({
-            madeBy: req.user._id,
-            board: req.body.board,
-          });
-        
-        try {
-            await userBoard.save();
-            }
-        catch(err) {
-               console.log(err)
-            }
+        const board = await UserBoard.findOne({madeBy: req.user._id})
+        if (board) {
+            try {
+                await UserBoard.updateOne(board, { $set: {"board": req.body.board}})
+                res.end()
+                }
+            catch(err) {
+                   console.log(err) 
+                }
+        }
+        else{
+            const userBoard = new UserBoard({
+                madeBy: req.user._id,
+                board: req.body.board,
+              });
+            
+            try {
+                await userBoard.save();
+                res.end()
+                }
+            catch(err) {
+                   console.log(err)
+                }
+        }
     }
 }
