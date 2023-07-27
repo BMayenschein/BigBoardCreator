@@ -22,7 +22,12 @@
     <div class="container">
         <section class="list-types">
             <section class="ranked">
-                <a href="/ranked">Create Ranked List</a>
+                <% if (user) { %>
+                    <a href="/ranked/<%= user.userName%>">View your ranked board</a>
+                <% } else { %>
+                    <a href="/ranked">Create Ranked List</a>
+                <% } %>
+                
                 <p>Create a big board</p>
             </section>
             <section class="tiered">
