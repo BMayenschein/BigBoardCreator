@@ -68,11 +68,9 @@
         </div>     
         <div class="board-container">
         </div>
-        <% if (user) { %>
-            <button class="save">Save Board</button>
-        <%} else { %>
-            <a href="/auth/login">Please login to save your board</a>
-        <% } %>
         <script src="../js/script.js"></script>
+        <% if (user) { %>
+            <script>window.onload = getUserBoard()</script>
+        <% } %>
     </body>
 </html>
