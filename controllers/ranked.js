@@ -3,6 +3,11 @@ const UserBoard = require('../models/Board')
 
 module.exports = {
     getPlayers: async (req,res)=>{
+        if (req.user) {
+            if (req.user.userName !== req.params.userName) {
+                res.redirect('/ranked/' +  req.user.userName)
+            }
+        }
         try{
             const players = await playerInfo.find();
             res.render('ranked.ejs', {playerArr: players, user: req.user})
