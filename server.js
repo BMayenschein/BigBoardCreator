@@ -46,6 +46,11 @@ app.use(flash());
 app.use('/', homeRoutes)
 app.use('/ranked', rankedRoute)
 app.use('/auth', authRoute)
+
+//For all non existing routes
+app.get('*', function(req, res) {
+    res.send("This page doesn't exist", 404);
+})
  
 app.listen(process.env.PORT, ()=>{
     console.log('Server is running, you better catch it!')
