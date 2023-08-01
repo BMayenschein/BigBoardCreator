@@ -5,13 +5,29 @@ const prev = document.querySelector('.previous')
 const track = document.querySelector('.track');
 const cards = document.querySelectorAll('.card');
 const carouselWidth = document.querySelector('.carousel-container').offsetWidth;
-const saveButton = document.querySelector('.save');
 
 let count = 0;
 let board = [];
 let position = 0;
 
-playerCards.forEach(card => addEventListener('click', addToBoard));
+playerCards.forEach(card => card.addEventListener('click', addToBoard));
+
+async function saveBoard() {
+    try{
+        const sendBoard = await fetch('../ranked/saveBoard', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                'board': board
+            }),
+        });
+    }
+    catch (error) {
+        console.error("Error:", error);
+    }
+}
 
 function swapPlayer(e) {
     if (document.getElementsByClassName("selected").length == 0) {
@@ -33,6 +49,7 @@ function swapPlayer(e) {
             [board[index1], board[index2]] = [board[index2], board[index1]]
             player[0].classList.remove("selected");
             renderBoard();
+            saveBoard();
         }
     }
 }
@@ -90,6 +107,7 @@ async function renderBoard() {
 }
 
 async function addToBoard(e) {
+    console.log('add to board called')
     if (board.length < 30) {
         let card = e.target.closest(".card");
         if (!card) return;
@@ -116,6 +134,7 @@ async function addToBoard(e) {
 }
 
 async function getUserBoard() {
+    console.log('get user board')
     try {
         let res = await fetch('../ranked/getUserBoard')
         const usersBoard = await res.json();
@@ -140,23 +159,3 @@ prev.addEventListener('click', () => {
         position = position + 1000;
     }
 });
-
-async function saveBoard() {
-    try{
-        const sendBoard = await fetch('../ranked/saveBoard', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                'board': board
-            }),
-        });
-    }
-    catch (error) {
-        console.error("Error:", error);
-    }
-}
-
-window.onload = getUserBoard()
-console.log(board);
