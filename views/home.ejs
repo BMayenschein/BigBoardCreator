@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,32 +13,30 @@
         <h1>NBA Big Board Creator</h1>
 
         <% if (user) { %>
-            <form method="post" action="/auth/logout" id="logout">
+            <form class="logout" method="post" action="/auth/logout" id="logout">
                 <input type="submit" value="logout">
             </form>
             <%} else { %>
-                <a href="/auth/login">Login</a>
+                <a href="/auth/login" class="login">Login</a>
             <% } %>
     </header>
-    <div class="container">
-        <section class="list-types">
-            <section class="ranked">
-                <% if (user) { %>
-                    <a href="/ranked/<%= user.userName%>">View your ranked board</a>
-                <% } else { %>
-                    <a href="/ranked">Create Ranked List</a>
-                <% } %>
+    <div class="container">  
+        <section class="ranked">
+            <% if (user) { %>
+                <a href="/ranked/<%= user.userName%>">View your ranked board</a>
+            <% } else { %>
+                <a href="/ranked">Create Ranked List</a>
+            <% } %>
                 
-                <p>Create a big board</p>
-            </section>
-            <section class="tiered">
-                <a href="/tierList">Create Tiered List</a>
-                <p>Create a tiered list with this years prospects</p>
-            </section>
-            <section class="mock">
-                <a href="/mock">Create a mock draft</a>
-                <p>Create a mock draft based off of the NBA lottery odds</p>
-            </section>
+            <p>Create a big board</p>
+        </section>
+        <section class="tiered">
+            <a href="/tierList">Create Tiered List</a>
+            <p>Create a tiered list with this years prospects</p>
+        </section>
+        <section class="mock">
+            <a href="/mock">Create a mock draft</a>
+            <p>Create a mock draft based off of the NBA lottery odds</p>
         </section>
     </div>
 </body>
