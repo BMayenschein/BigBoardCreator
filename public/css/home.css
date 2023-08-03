@@ -1,5 +1,5 @@
 body {
-    width: 75%;
+    width: 50%;
     margin: 0 auto;
     padding: 0;
     display: flex;
@@ -30,5 +30,14 @@ h1 {
     min-height: 80vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
+}
+
+body .container section {
+    height: 20vh;
+    border: 1px solid grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
