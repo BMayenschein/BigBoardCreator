@@ -8,39 +8,42 @@
         <link rel="stylesheet" href="../css/normalize.css">
         <link rel="stylesheet" href="../css/login.css">
     </head>
-    <body>
-        <div class="container">
+    <body> 
+        <div class="alerts">
             <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
                 <div><%=el.msg %></div>
-            <% }) %> <% } %> <% if (locals.messages.info) { %> 
+            <% }) %> <% } %> 
+            <% if (locals.messages.info) { %> 
             <% messages.info.forEach( el => { %>
             <div><%=el.msg %></div>
-            <%})}%>
+            <% })} %>
+        </div>
+        <div class="container">
 
-            <form action="/auth/login" method="POST">
-                <div>
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <h1>Login</h1>
+
+            <form action="/auth/login" method="POST" class="loginForm">
                 <input
                     type="email"
-                    class="form-control"
-                    id="exampleInputEmail1"
+                    placeholder="email"
+                    class="email"
+                    id="inputEmail"
                     aria-describedby="emailHelp"
                     name="email"
                 />
-                </div>
-                <div>
-                <label for="exampleInputPassword1" class="form-label">Password</label>
                 <input
                     type="password"
-                    class="form-control"
-                    id="exampleInputPassword1"
+                    placeholder="password"
+                    class="password"
+                    id="inputPassword"
                     name="password"
                 />
+                <div class="buttons">
+                    <button type="submit" class="btn">Sign In</button>
+                    <a href="/auth/signup" class="btn2">Sign Up</a>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-
-            <a href="/auth/signup">Don't have an account? Signup here!</a>
         </div>
+        <a href="/" class="home">Return Home</a>
     </body>
 </html>
