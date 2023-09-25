@@ -6,68 +6,65 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link type="text/css" href="../css/normalize.css">
         <link rel="stylesheet" href="../css/ranked.css">
+        <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
         <title>Big Board</title>
     </head>
     <body>
         <nav>
             <a href="/">Home</a>
+            <h1>Big Board</h1>
             <div>
                 <% if (user) { %>
                     <form method="post" action="/auth/logout" id="logout">
-                        <input type="submit" value="logout">
+                        <input type="submit" value="Logout">
                     </form>
                 <%} else { %>
                     <a href="/auth/login">Login</a>
                 <% } %>
             </div>
         </nav>
-        <div class="carousel-container">
-            <div class="carousel-inner">
-                <div class="track">
-                    <% playerArr.forEach((player, index) => {%>
-                        <div class="card-container">
-                            <div class="card" data-id="<%=index%>">
-                                <div class="col1">
-                                    <div class="pImg">
-                                        <img src="../img/<%=player.firstName%><%=player.lastName%>.png" alt="">
-                                    </div>
-                                    <div class="pInfo">
-                                        <div class="pName">
-                                            <span><%=player.firstName%></span>
-                                            <span><%=player.lastName%></span>
-                                        </div>
-                                        <div class="pInfo2">
-                                            <span><%=player.height%> |</span>
-                                            <span><%=player.position%></span>
-                                        </div>
-                                    </div>
+        <section class="content">
+            <div class="carousel-container">
+                <% playerArr.forEach((player, index) => {%>
+                    <div class="card-container">
+                        <div class="card" data-id="<%=index%>">
+                            <div class="col1">
+                                <div class="pImg">
+                                    <img src="../img/<%=player.firstName%><%=player.lastName%>.png" alt="">
                                 </div>
-                                <div class="col2">
-                                    <div class="stat">
-                                        <span><%=player.PTS%></span>
-                                        <span>PTS</span>
+                                <div class="pInfo">
+                                    <div class="pName">
+                                        <span><%=player.firstName%></span>
+                                        <span><%=player.lastName%></span>
                                     </div>
-                                    <div class="stat">
-                                        <span><%=player.REB%></span>
-                                        <span>REB</span>
-                                    </div>
-                                    <div class="stat">
-                                        <span><%=player.AST%></span>
-                                        <span>AST</span>
+                                    <div class="pInfo2">
+                                        <span><%=player.height%> |</span>
+                                        <span><%=player.position%></span>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col2">
+                                <div class="stat">
+                                    <span><%=player.PTS%></span>
+                                    <span>PTS</span>
+                                </div>
+                                <div class="stat">
+                                    <span><%=player.REB%></span>
+                                    <span>REB</span>
+                                </div>
+                                <div class="stat">
+                                    <span><%=player.AST%></span>
+                                    <span>AST</span>
+                                </div>
+                            </div>
                         </div>
-                    <%})%>
-                </div>
+                    </div>
+                <%})%>
+            </div>     
+            <div class="board-container">
             </div>
-            <div class="nav">
-                <button class="previous"> < </button>
-                <button class="next"> > </button>
-            </div>
-        </div>     
-        <div class="board-container">
-        </div>
+        </section>
+        <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
         <script src="../js/script.js"></script>
         <% if (user) { %>
             <script>window.onload = getUserBoard()</script>
