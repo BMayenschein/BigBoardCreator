@@ -1,20 +1,38 @@
 let playerCards = document.querySelectorAll(".card");
 
-const next = document.querySelector('.next');
-const prev = document.querySelector('.previous')
 const track = document.querySelector('.track');
 const cards = document.querySelectorAll('.card');
-const carouselWidth = document.querySelector('.carousel-container').offsetWidth;
+let carouselWidth = document.querySelector('.carousel-container').offsetWidth;
 
 let count = 0;
 let board = [];
 let position = 0;
+let draftOrder = [];
 
 playerCards.forEach(card => card.addEventListener('click', addToBoard));
 
+let boardType = window.location.pathname.includes('ranked') ? 'ranked' : 'mock'
+
+async function getDraftOrder() {
+    try {
+        let res = await fetch("../mock/getDraftOrder")
+        const order = await res.json();
+        draftOrder = order;
+    }
+    catch(err) {
+        console.log(err)
+    }
+}
+
+
+if (boardType === "mock") {
+    getDraftOrder()
+}
+
+
 async function saveBoard() {
     try{
-        const sendBoard = await fetch('../ranked/saveBoard', {
+        const sendBoard = await fetch(`../${boardType}/saveBoard`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -107,13 +125,13 @@ async function renderBoard() {
 }
 
 async function addToBoard(e) {
-    console.log('add to board called')
     if (board.length < 30) {
+        console.log(board.length)
         let card = e.target.closest(".card");
         if (!card) return;
         let index = card.dataset.id;
         try{
-            const response = await fetch('../ranked/addToBoard', {
+            const response = await fetch(`../${boardType}/addToBoard`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -125,18 +143,21 @@ async function addToBoard(e) {
             const player = await response.json();
             board.push(player);
             renderBoard();
+            saveBoard();
         }
         catch (error) {
             console.error("Error:", error);
         }
     }
-    saveBoard();
+    else {
+        return
+    }
 }
 
 async function getUserBoard() {
     console.log('get user board')
     try {
-        let res = await fetch('../ranked/getUserBoard')
+        let res = await fetch(`../${boardType}/getUserBoard`)
         const usersBoard = await res.json();
         board = usersBoard;
     }
@@ -146,16 +167,16 @@ async function getUserBoard() {
     renderBoard();
 }
 
-next.addEventListener('click', () => {
-    if (position != Math.floor(cards.length / 5) * -1000 + 1000){
-        track.style.transform = `translateX(${position - 1000}px)`;
-        position = position - 1000;
-    }
+
+let elem = document.querySelector('.carousel-container');
+var flkty = new Flickity( elem, {
+  groupCells: true,
+  contain: true,
+  wrapAround: true,
+  lazyLoad: true,
+  pageDots: false,
+  cellAlign: 'center',
+  percentPosition: false,
+  watchCSS: true
 });
-    
-prev.addEventListener('click', () => {
-    if (position !== 0) {
-        track.style.transform = `translateX(${position + 1000}px)`;
-        position = position + 1000;
-    }
-});
+
