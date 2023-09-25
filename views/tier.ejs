@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link type="text/css" href="../css/normalize.css">
+        <link rel="stylesheet" href="../css/tier.css">
+        <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+        <title>Draft Tier List</title>
+    </head>
+    <body>
+        <nav>
+            <a href="/">Home</a>
+            <h1>Draft Tier List</h1>
+            <div>
+                <% if (user) { %>
+                    <form method="post" action="/auth/logout" id="logout">
+                        <input type="submit" value="Logout">
+                    </form>
+                <%} else { %>
+                    <a href="/auth/login">Login</a>
+                <% } %>
+            </div>
+        </nav>
+        <main>
+            <div class="tierContainer">
+                <div class="tier">
+                    <div class="tierInfo" ondragenter="event.preventDefault(); event.dataTransfer.dropEffect = 'none'" ondragover="event.preventDefault(); 
+                    event.dataTransfer.dropEffect = 'none'" style="background-color: #00ff01">
+                        <i class="fa-regular fa-circle tierColor" title="Change Color"></i>
+                        <span class="tierDesc" contenteditable="true" ondragenter="event.preventDefault(); 
+                        event.dataTransfer.dropEffect = 'none'" ondragover="event.preventDefault(); 
+                        event.dataTransfer.dropEffect = 'none'">Tier Description</span>
+                        <i class="fa-solid fa-xmark removeTier"></i>
+                    </div>
+                    <div class="playerArea"></div>
+                </div>
+            </div>
+        
+            <button class="addTier" ondragenter="event.preventDefault(); event.dataTransfer.dropEffect = 'none'" ondragover="event.preventDefault(); event.dataTransfer.dropEffect = 'none'">Add a new Tier</button>
+            <div class="playersContainer">
+                <% playerArr.forEach((player, index) => {%>
+                    <div class="pImg draggablePlayer" data-pName="<%=player.firstName%><%=player.lastName%>" title="<%=player.firstName%> <%=player.lastName%>"draggable="true">
+                        <img src="../img/<%=player.firstName%><%=player.lastName%>.png" alt="">
+                    </div>
+                <% }) %>
+            </div>
+        </main>
+        <script src="../js/tier.js"></script>
+        <!-- <% if (user) { %>
+            <script>window.onload = getUserBoard()</script>
+        <% } %> -->
+        <script src="https://kit.fontawesome.com/41c5cc6e36.js" crossorigin="anonymous"></script>
+    </body>
+</html>
