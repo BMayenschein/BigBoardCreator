@@ -12,6 +12,8 @@ const connectDB = require('./config/database')
 const homeRoutes = require('./routes/home')
 const rankedRoute = require('./routes/ranked')
 const authRoute = require('./routes/auth')
+const mockRoute = require('./routes/mock')
+const tierRoute = require('./routes/tier')
 
 require('dotenv').config({path: './config/.env'})
 require("./config/passport")(passport);
@@ -46,12 +48,16 @@ app.use(flash());
 app.use('/', homeRoutes)
 app.use('/ranked', rankedRoute)
 app.use('/auth', authRoute)
+app.use('/mock', mockRoute)
+app.use('/tier', tierRoute)
 
 //For all non existing routes
 app.get('*', function(req, res) {
-    res.send("This page doesn't exist", 404);
+    res.status(404).send("This page doesn't exist")
 })
  
 app.listen(process.env.PORT, ()=>{
     console.log('Server is running, you better catch it!')
 })
+
+
