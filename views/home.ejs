@@ -21,7 +21,7 @@
             <% } %>
     </header>
     <div class="container">  
-        <section class="ranked">
+        <section class="option">
             <% if (user) { %>
                 <a href="/ranked/<%= user.userName%>">View your ranked board</a>
             <% } else { %>
@@ -30,13 +30,21 @@
                 
             <p>Create a big board that represents your rankings of the 30 best NBA prospects</p>
         </section>
-        <section class="tiered">
-            <a href="/tierList">Create Tiered Board</a>
-            <p>Coming Soon!</p>
+        <section class="option">
+            <% if (user) { %>
+                <a href="/tier/<%= user.userName%>">View your draft tier list</a>
+            <% } else { %>
+                <a href="/tier">Create a Tier List</a>
+            <% } %>
+            <p>Seperate prospects into your own custom made tiers</p>
         </section>
-        <section class="mock">
-            <a href="/mock">Create a Mock Draft</a>
-            <p>Coming Soon!</p>
+        <section class="option">
+            <% if (user) { %>
+                <a href="/mock/<%= user.userName%>">View your Mock Draft</a>
+            <% } else { %>
+                <a href="/mock">Create a Mock Draft</a>
+            <% } %>
+            <p>Simulate the NBA Lottery and create your own mock draft</p>
         </section>
     </div>
 </body>
