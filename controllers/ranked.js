@@ -1,5 +1,5 @@
 const playerInfo = require('../models/playerInfo')
-const UserBoard = require('../models/Board')
+const UserBoard = require('../models/RankedBoard')
 
 module.exports = {
     getPlayers: async (req,res)=>{
