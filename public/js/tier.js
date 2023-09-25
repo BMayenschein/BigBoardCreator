@@ -151,18 +151,18 @@ async function saveBoard() {
         const tierColor = tier.children[0].style.backgroundColor
         const playerDivs = [...tier.children[1].children]
         const players = playerDivs.map(div => div.dataset.pname)
+        const playerContainerDivs = [...playersContainer.children]
+        const playersInPool = playerContainerDivs.map(player => player.dataset.pname)
     
         board.push({
             "tierInfo": tierInfo,
             "players": players,
             "tierColor": tierColor,
         })
+
+        
     })
 
-    const playerContainerDivs = [...playersContainer.children]
-    const playersInPool = playerContainerDivs.map(player => player.dataset.pname)
-    board.push({
-        ""
-    })
+
     console.log(board);
 }
