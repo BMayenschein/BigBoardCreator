@@ -24,9 +24,10 @@ module.exports = {
         try{
             let usersBoard = await UserBoard.findOne({madeBy: req.user._id})
             if (!usersBoard) {
-                return
+                const players = await playerInfo.find();
+                res.render('tier.ejs', {playerArr: players, user: req.user})
             }
-            res.send(usersBoard.board);
+            res.render('usersTier.ejs', {userBoard: usersBoard.board, playerPool: usersBoard.playerPool, user: req.user})
         }
         catch(err){
             console.log(err);
@@ -52,7 +53,7 @@ module.exports = {
         const board = await UserBoard.findOne({madeBy: req.user._id})
         if (board) {
             try {
-                await UserBoard.updateOne(board, { $set: {"board": req.body.board}})
+                await UserBoard.updateOne(board, { $set: {"board": req.body.board, "playerPool": req.body.playerPool}})
                 res.end()
                 }
             catch(err) {
@@ -63,6 +64,7 @@ module.exports = {
             const userBoard = new UserBoard({
                 madeBy: req.user._id,
                 board: req.body.board,
+                playerPool: req.body.playerPool,
               });
             
             try {
