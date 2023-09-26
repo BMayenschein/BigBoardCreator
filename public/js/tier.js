@@ -5,10 +5,10 @@ const tierDescs = document.querySelectorAll('.tierDesc')
 const tierInfo = document.querySelectorAll('.tierInfo')
 const addTierBtn = document.querySelector('.addTier')
 const playersContainer = document.querySelector('.playersContainer')
-const removeTierBtn = document.querySelector('.removeTier')
-const changeColorBtn = document.querySelector('.tierColor')
+const removeTierBtns = document.querySelectorAll('.removeTier')
+const changeColorBtns = document.querySelectorAll('.tierColor')
 
-removeTierBtn.addEventListener('click', removeTier)
+removeTierBtns.forEach(btn => btn.addEventListener('click', removeTier))
 
 function removeTier(e) {
     const parent = e.target.parentElement
@@ -17,27 +17,35 @@ function removeTier(e) {
     let players = [...pArea.children]
     players.forEach(player => playersContainer.appendChild(player))
     gParent.remove()
+    saveBoard();
 }
 
-changeColorBtn.addEventListener('click', changeColor)
+changeColorBtns.forEach(btn => btn.addEventListener('click', changeColor));
 
 function changeColor(e) {
-    let colors = ['rgb(255, 215, 0)', 'rgb(255, 255, 1)', 'rgb(255, 127, 0)', 'rgb(254, 0, 0)', 'rgb(255, 1, 126)', 'rgb(255, 0, 254)', 'rgb(127, 0, 255)', 'rgb(0, 0, 254)', 'rgb(0, 63, 255)',
-'rgb(1, 255, 255)', 'rgb(0, 254, 129)', 'rgb(0, 255, 1)']
+    let colors = ['gold','yellow', 'orange', 'red', 'magenta', 'pink', 'purple', 'blue',
+    'teal', 'lightgreen', 'green']
     const parent = e.target.parentElement
-    let currentColor = parent.style.backgroundColor
+    let currentColor = parent.classList[1]
+    if (!colors.includes(currentColor)) {
+        parent.classList.remove(currentColor);
+        currentColor = 'green';
+    }
+    parent.classList.remove(currentColor);
     let currentIndex = colors.indexOf(currentColor)
-    if (currentIndex == 11) {
+    if (currentIndex == 10) {
         currentIndex = 0
     }
-    parent.style.backgroundColor = colors[currentIndex + 1]
+    let newColor = colors[currentIndex + 1]
+    parent.classList.add(newColor)
+    saveBoard();
 }
 
 addTierBtn.addEventListener('click', addTier)
 
 function addTier() {
-    let colors = ['rgb(255, 215, 0)','rgb(255, 255, 1)', 'rgb(255, 127, 0)', 'rgb(254, 0, 0)', 'rgb(255, 1, 126)', 'rgb(255, 0, 254)', 'rgb(127, 0, 255)', 'rgb(0, 0, 254)', 'rgb(0, 63, 255)',
-'rgb(1, 255, 255)', 'rgb(0, 254, 129)', 'rgb(0, 255, 1)']
+    let colors = ['gold','yellow', 'orange', 'red', 'magenta', 'pink', 'purple', 'blue',
+'teal', 'lightgreen', 'green']
     const tierContainer = document.querySelector('.tierContainer');
 
     const tier = document.createElement('div')
@@ -48,7 +56,7 @@ function addTier() {
     info.setAttribute('ondragenter', "event.preventDefault(); event.dataTransfer.dropEffect = 'none'")
     info.setAttribute('ondragover', "event.preventDefault(); event.dataTransfer.dropEffect = 'none'")
     let color = colors[Math.floor(Math.random()*colors.length)];
-    info.style.backgroundColor = color;
+    info.classList.add(color)
 
     const tierSettings = document.createElement('i')
     tierSettings.classList.add('fa-regular')
@@ -89,6 +97,7 @@ function addTier() {
     tierSettings.addEventListener('click', function(e) {
         changeColor(e);
     })
+    saveBoard();
 }
 
 draggablePlayers.forEach(player => {
@@ -100,7 +109,7 @@ draggablePlayers.forEach(player => {
     player.addEventListener('dragend', () => {
         player.classList.remove('dragging');
         player.classList.remove('hideInArea');
-        
+        saveBoard();
     })
 })
 
@@ -145,24 +154,59 @@ function returnPlayerToPool(e, area) {
 async function saveBoard() {
     const tiers = [...document.querySelectorAll('.tier')]
     let board = []
+    const playersInPool = document.querySelector('.playersContainer')
+    const playerContainerDivs = [...playersInPool.children]
+    const playerPool = playerContainerDivs.map(player => player.dataset.pname)
+    console.log(playerPool);
 
     tiers.forEach(tier => {
         const tierInfo = tier.children[0].children[1].innerText
-        const tierColor = tier.children[0].style.backgroundColor
+        const tierColor = tier.children[0].classList[1]
         const playerDivs = [...tier.children[1].children]
         const players = playerDivs.map(div => div.dataset.pname)
-        const playerContainerDivs = [...playersContainer.children]
-        const playersInPool = playerContainerDivs.map(player => player.dataset.pname)
     
         board.push({
             "tierInfo": tierInfo,
             "players": players,
             "tierColor": tierColor,
         })
-
-        
     })
 
+    try{
+        const sendBoard = await fetch(`../tier/saveBoard`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                'board': board,
+                'playerPool': playerPool,
+            }),
+        });
+    }
+    catch (error) {
+        console.error("Error:", error);
+    }
 
-    console.log(board);
+}
+
+async function getUserBoard() {
+    let board = [];
+    let playerPool = [];
+    let tierColor = "";
+    try {
+        let res = await fetch(`../tier/getUserBoard`)
+        const usersBoard = await res.json();
+        board = usersBoard.userBoard;
+        playerPool = usersBoard.playerPool;
+        tierColor = usersBoard.tierColor;
+    }
+    catch(err) {
+        console.log(err)
+    }
+    renderBoard(board, playerPool, tierColor);
+}
+
+function renderBoard(board, playerPool, tierColor) {
+
 }

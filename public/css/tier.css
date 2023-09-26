@@ -170,4 +170,37 @@ input[type="color"] {
   box-shadow: rgba(0, 0, 0, .5) 0 0 0 3px;
 }
 
+.gold {
+    background-color: rgb(255, 215, 0)
+}
 
+.yellow {
+    background-color: rgb(255, 255, 1)
+}
+.orange {
+    background-color: rgb(255, 127, 0);
+}
+.red {
+    background-color: rgb(254, 0, 0)
+}
+.magenta {
+    background-color: rgb(255, 1, 126);
+}
+.pink {
+    background-color: rgb(255, 0, 254);
+}
+.purple {
+    background-color: rgb(127, 0, 255)
+}
+.blue {
+    background-color: rgb(0, 0, 254);
+}
+.teal {
+    background-color: rgb(1, 255, 255);
+}
+.lightgreen {
+    background-color: rgb(0, 254, 129);
+}
+.green {
+    background-color: rgb(0, 255, 1)
+}
