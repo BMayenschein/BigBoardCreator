@@ -10,6 +10,7 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 80%;
     margin: 0 auto;
     font-family: 'Open Sans', sans-serif;
@@ -19,6 +20,7 @@ body nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
   
 body nav a {
@@ -39,21 +41,22 @@ body nav a:visited, body nav a:link, #logout input {
 }
 
 main {
-    width: 70%;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 .tierContainer {
     display: flex;
     flex-direction: column;
     padding-bottom: 10px;
+    min-width: 100%;
 }
 
 .tier {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 1rem;
 }
 
 .tierInfo {
@@ -122,10 +125,6 @@ input[type="color"] {
 }
 
 .addTier {
-    margin: 0 auto;
-}
-
-.addTier {
   align-items: center;
   background-color: initial;
   background-image: linear-gradient(#464d55, #25292e);
@@ -140,9 +139,9 @@ input[type="color"] {
   font-family: expo-brand-demi,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
   font-size: 18px;
   height: 52px;
+  width: fit-content;
   justify-content: center;
   line-height: 1;
-  margin: 0 auto;
   outline: none;
   overflow: hidden;
   padding: 0 32px;
@@ -203,4 +202,11 @@ input[type="color"] {
 }
 .green {
     background-color: rgb(0, 255, 1)
+}
+
+
+@media only screen and (max-width: 1200px)  {
+    body {
+        width: 90%;
+    }
 }
