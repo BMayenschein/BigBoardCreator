@@ -7,7 +7,7 @@ router.get('/', ensureGuest, tierController.getPlayers) ;
 router.get('/getUserBoard', tierController.getUserBoard);
 
 //Last route because it overrides everything
-router.get('/:userName', ensureAuth, tierController.getPlayers);
+router.get('/:userName', ensureAuth, tierController.getUserBoard);
 
 
 router.post('/addToBoard', tierController.addToBoard);
