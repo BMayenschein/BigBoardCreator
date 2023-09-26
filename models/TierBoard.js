@@ -9,6 +9,10 @@ const TierBoardSchema = new mongoose.Schema({
         type: Array,
         required: true,
     },
+    playerPool: {
+        type: Array,
+        required: true,
+    },
 });
 
 module.exports = mongoose.model("TierBoard", TierBoardSchema);
