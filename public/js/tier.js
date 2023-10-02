@@ -190,23 +190,3 @@ async function saveBoard() {
 
 }
 
-async function getUserBoard() {
-    let board = [];
-    let playerPool = [];
-    let tierColor = "";
-    try {
-        let res = await fetch(`../tier/getUserBoard`)
-        const usersBoard = await res.json();
-        board = usersBoard.userBoard;
-        playerPool = usersBoard.playerPool;
-        tierColor = usersBoard.tierColor;
-    }
-    catch(err) {
-        console.log(err)
-    }
-    renderBoard(board, playerPool, tierColor);
-}
-
-function renderBoard(board, playerPool, tierColor) {
-
-}
