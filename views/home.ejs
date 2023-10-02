@@ -7,45 +7,124 @@
     <title>NBA Big Board Creator</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Roboto&display=swap" rel="stylesheet"> 
+
 </head>
 <body>
     <header>
-        <h1>NBA Big Board Creator</h1>
-
-        <% if (user) { %>
-            <form class="logout" method="post" action="/auth/logout" id="logout">
-                <input type="submit" value="logout">
-            </form>
+            <h1>Big Board Creator</h1>
+            <% if (user) { %>
+                <form method="post" action="/auth/logout" id="logout">
+                    <input class='out' type="submit" value="" title="Logout">
+                </form>
             <%} else { %>
-                <a href="/auth/login" class="login">Login</a>
+                <form action="/auth/login">
+                    <input class='in' type="submit" value="" title="Login">
+                </form>
             <% } %>
     </header>
-    <div class="container">  
-        <section class="option">
+    <main> 
+        <p class="about">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        </p>
+
+        <section class="big-screen option top">
+            <div class="text">
+            <h2>Big Board</h2> 
+            <p class="let-bot">Create a big board that represents your rankings of the 30 best NBA prospects</p>
             <% if (user) { %>
-                <a href="/ranked/<%= user.userName%>">View your ranked board</a>
+                <form action="/ranked/<%= user.userName%>">
+                    <input class="btn1" type="submit" value="View Bigboard">
+                </form>
             <% } else { %>
-                <a href="/ranked">Create a Big Board</a>
-            <% } %>
-                
-            <p>Create a big board that represents your rankings of the 30 best NBA prospects</p>
+                <form action="/ranked/">
+                    <input class="btn1" type="submit" value="View Bigboard">
+                </form>
+            <% } %>   
+            </div>
+            <img class="img" src="../img/bigboard2.png">
+        </section> 
+        <section class="small-screen option top">
+            <h2>Big Board</h2> 
+            <img src="../img/bigboard.png">
+            <p>Create a big board that represents the best 30 players in the draft class</p>
+            <% if (user) { %>
+                <form action="/ranked/<%= user.userName%>">
+                    <input class="btn1" type="submit" value="View Bigboard">
+                </form>
+            <% } else { %>
+                <form action="/ranked/">
+                    <input class="btn1" type="submit" value="View Bigboard">
+                </form>
+            <% } %> 
         </section>
-        <section class="option">
-            <% if (user) { %>
-                <a href="/tier/<%= user.userName%>">View your draft tier list</a>
-            <% } else { %>
-                <a href="/tier">Create a Tier List</a>
-            <% } %>
+
+        <section class="big-screen option mid">
+            <img class="midimg" src="../img/tierboard2.png"> 
+            <div class="text">
+                <h2>Tier List</h2>
+                <p>Seperate prospects into your own custom made tiers</p>
+                <% if (user) { %>
+                    <form action="/tier/<%= user.userName%>">
+                        <input class="btn1" type="submit" value="View Tierlist">
+                    </form>
+                <% } else { %>
+                    <form action="/tier/">
+                        <input class="btn1" type="submit" value="View Tierlist">
+                    </form>
+                <% } %> 
+            
+            </div> 
+        </section>
+        <section class="small-screen option mid">
+            <h2>Tier List</h2> 
+            <img src="../img/tierboard.png">
             <p>Seperate prospects into your own custom made tiers</p>
-        </section>
-        <section class="option">
             <% if (user) { %>
-                <a href="/mock/<%= user.userName%>">View your Mock Draft</a>
+                <form action="/tier/<%= user.userName%>">
+                    <input class="btn1" type="submit" value="View Tierlist">
+                </form>
             <% } else { %>
-                <a href="/mock">Create a Mock Draft</a>
-            <% } %>
-            <p>Simulate the NBA Lottery and create your own mock draft</p>
+                <form action="/tier/">
+                    <input class="btn1" type="submit" value="View Tierlist">
+                </form>
+            <% } %> 
         </section>
-    </div>
+
+        <section class="big-screen option bot">
+            <div class="text">
+                <h2>Mock Board</h2>
+                <p>Simulate the NBA Lottery and create your own mock draft</p>
+                <% if (user) { %>
+                    <form action="/mock/<%= user.userName%>">
+                        <input class="btn1" type="submit" value="View Bigboard">
+                    </form>
+                <% } else { %>
+                    <form action="/mock/">
+                        <input class="btn1" type="submit" value="View Mock">
+                    </form>
+                <% } %> 
+            </div>
+            <img class="img" src="../img/mockdraft2.png">
+        </section>
+        <section class="small-screen option bot">
+            <h2>Mock Board</h2> 
+            <img src="../img/mockdraft.png">
+            <p>Simulate the NBA Lottery and create your own mock draft</p>
+            <% if (user) { %>
+                <form action="/mock/<%= user.userName%>">
+                    <input class="btn1" type="submit" value="View Bigboard">
+                </form>
+            <% } else { %>
+                <form action="/mock/">
+                    <input class="btn1" type="submit" value="View Mock">
+                </form>
+            <% } %> 
+            </section>
+    </main>
 </body>
 </html>
