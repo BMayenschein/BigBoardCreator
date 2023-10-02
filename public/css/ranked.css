@@ -197,11 +197,11 @@ box-shadow: 0 0 5px #0075bd;
 .player span {
   height: 100%;
   font-size: 2em;
-  text-align: center;
 }
 
 .playerName {
   flex-grow: 2;
+  padding-left: 10px;
 }
 .spot {
   background: linear-gradient(#585858, #000000);
@@ -213,6 +213,11 @@ box-shadow: 0 0 5px #0075bd;
 .position, .spot {
   width: 15%;
   min-width: 40px;
+}
+
+.position {
+  text-align: end;
+  padding-right: 10px;
 }
 
 .delete-btn {

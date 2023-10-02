@@ -40,6 +40,7 @@
   .carousel-container {
     margin: 0 auto;
     height: auto;
+    padding-bottom: 1rem;
   }
   
   .carousel-container:after {
@@ -166,12 +167,50 @@
   opacity: .5;
   }
   
+  .board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .simLottery {
+    align-items: center;
+    background-color: initial;
+    background-image: linear-gradient(#464d55, #25292e);
+    border-radius: 8px;
+    border-width: 0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .1),0 3px 6px rgba(0, 0, 0, .05);
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: column;
+    font-family: expo-brand-demi,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 18px;
+    height: 52px;
+    width: fit-content;
+    justify-content: center;
+    line-height: 1;
+    outline: none;
+    overflow: hidden;
+    padding: 0 32px;
+    text-align: center;
+    text-decoration: none;
+    transform: translate3d(0, 0, 0);
+    transition: all 150ms;
+    vertical-align: baseline;
+    white-space: nowrap;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
   .board-container {
     display: grid;
     width: 100%;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(10, 80px);
     grid-auto-flow: column;
+    padding-top: 1rem;
   }
   
   .player {
@@ -196,11 +235,11 @@
   .player span {
     height: 100%;
     font-size: 2em;
-    text-align: center;
   }
   
   .playerName {
     flex-grow: 2;
+    padding-left: 10px;
   }
   .spot {
     background: linear-gradient(#585858, #000000);
@@ -317,15 +356,24 @@
     .nav {
       display: none;
     }
+    .board {
+      align-items: auto;
+      flex-grow: 2;
+    }
+    .simLottery {
+      align-self: center;
+    }
     .board-container {
       display: flex;
       flex-direction: column;
-      width: auto;
       height: 90vh;
       overflow-y: scroll;
       flex-grow: 1;
   }
   
+  .teamLogo {
+    max-height: 30px;
+  }
     .player {
       line-height: 40px;
       margin: 2px 2px;
