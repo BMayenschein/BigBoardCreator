@@ -55,7 +55,6 @@ function swapPlayer(e) {
     }
     else {
         let player = document.getElementsByClassName("selected");
-        console.log(player[0]);
         let player2 = e.target.closest(".player");
         if (!player2) return;
         if (player2.classList.contains("selected")) {
@@ -126,7 +125,6 @@ async function renderBoard() {
 
 async function addToBoard(e) {
     if (board.length < 30) {
-        console.log(board.length)
         let card = e.target.closest(".card");
         if (!card) return;
         let index = card.dataset.id;
@@ -155,7 +153,6 @@ async function addToBoard(e) {
 }
 
 async function getUserBoard() {
-    console.log('get user board')
     try {
         let res = await fetch(`../${boardType}/getUserBoard`)
         const usersBoard = await res.json();

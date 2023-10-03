@@ -118,9 +118,6 @@ function removePlayerFromBoard(e) {
     if (!player) return;
     let index = player.classList[0];
 
-    console.log(player);
-    console.log(index);
-
     board[index] = null;
     renderBoard();
     saveBoard();
@@ -230,14 +227,11 @@ async function addToBoard(e) {
 }
 
 async function getUserBoard() {
-    console.log('get user board')
     try {
         let res = await fetch(`../${boardType}/getUserBoard`)
         const usersBoard = await res.json();
         board = usersBoard.userBoard;
         draftOrder = usersBoard.draftOrder;
-        console.log(usersBoard.userBoard);
-        console.log(usersBoard.draftOrder);
     }
     catch(err) {
         console.log(err)

@@ -157,7 +157,6 @@ async function saveBoard() {
     const playersInPool = document.querySelector('.playersContainer')
     const playerContainerDivs = [...playersInPool.children]
     const playerPool = playerContainerDivs.map(player => player.dataset.pname)
-    console.log(playerPool);
 
     tiers.forEach(tier => {
         const tierInfo = tier.children[0].children[1].innerText

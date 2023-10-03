@@ -34,7 +34,6 @@ module.exports = {
     },
 
     addToBoard: async (req,res)=> {
-      console.log('addToBoard called')
         try{
             const players = await playerInfo.find();
             res.send(players[req.body.index])
