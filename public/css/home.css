@@ -167,3 +167,9 @@ img {
         width: 400px;
     }
 }
+
+@media only screen and (min-width: 1250px) {
+    .about {
+        width: 35%;
+    }
+}
