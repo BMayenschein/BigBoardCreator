@@ -27,7 +27,7 @@
             <div class="carousel-container">
                 <% playerArr.forEach((player, index) => {%>
                     <div class="card-container">
-                        <div class="card" data-id="<%=index%>">
+                        <div class="card" data-id="<%=player._id%>">
                             <div class="col1">
                                 <div class="pImg">
                                     <img src="../img/<%=player.firstName%><%=player.lastName%>.png" alt="">
@@ -60,8 +60,19 @@
                         </div>
                     </div>
                 <%})%>
-            </div>     
-            <div class="board-container">
+            </div>
+            <div class="bottom">
+                <div class="sortContainer">
+                    <div class="sort">
+                        <button class="sortBtn sortByName">Name</button>
+                        <button class="sortBtn sortByPos">POS</button>
+                        <button class="sortBtn sortByPoints">PTS</button>
+                        <button class="sortBtn sortByReb">REB</button>
+                        <button class="sortBtn sortByAst">AST</button>
+                    </div> 
+                </div>
+                <div class="board-container">
+                </div>
             </div>
         </section>
         <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
