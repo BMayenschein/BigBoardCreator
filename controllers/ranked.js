@@ -6,6 +6,7 @@ module.exports = {
         if (req.user) {
             if (req.user.userName !== req.params.userName) {
                 res.redirect('/ranked/' +  req.user.userName)
+                return;
             }
         }
         try{
@@ -40,7 +41,6 @@ module.exports = {
             if (!player) {
                 return;
             }
-            console.log(player)
             res.send(player)
         }
         catch(err){
