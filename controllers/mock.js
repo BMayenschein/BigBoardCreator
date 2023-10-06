@@ -36,7 +36,12 @@ module.exports = {
     addToBoard: async (req,res)=> {
         try{
             const players = await playerInfo.find();
-            res.send(players[req.body.index])
+            let player = players.find((p) => p._id == req.body.id);
+            if (!player) {
+                return;
+            }
+            console.log(player);
+            res.send(player);
         }
         catch(err){
             console.log(err);
@@ -229,5 +234,82 @@ module.exports = {
         lottoTeams.forEach(team => lotteryOrder.push(team.Team));
         let draftOrder = lotteryOrder.concat(playoffTeams);
         res.send(draftOrder);
-    }
+    },
+    sortByName: async (req,res) => {
+      try {
+          const players = await playerInfo.find();
+          sortedByName = players.sort(function(a,b) {
+              if (a.firstName < b.firstName) {
+                  return -1;
+              }
+              if (a.firstName > b.firstName) {
+                  return 1;
+              }
+              return 0;
+          })
+         res.send(sortedByName);
+      }
+      catch(err) {
+          console.log(err)
+      }
+  },
+
+  sortByPosition: async (req,res) => {
+      try {
+          const players = await playerInfo.find();
+          sortedByPosition = players.sort(function(a,b) {
+              if (a.position < b.position) {
+                  return -1;
+              }
+              if (a.position > b.position) {
+                  return 1;
+              }
+              return 0;
+          })
+         res.send(sortedByPosition);
+      }
+      catch(err) {
+          console.log(err)
+      }
+  },
+
+  sortByPoints: async (req,res) => {
+      try {
+          const players = await playerInfo.find();
+          let hasStats = players.filter(x => x.PTS !== "NA");
+          let noStats = players.filter(x => x.PTS == "NA");
+          hasStats.sort(function(a,b) {return b.PTS - a.PTS});
+          const sortedByPoints = hasStats.concat(noStats);
+          res.send(sortedByPoints);
+      }
+      catch(err) {
+          console.log(err)
+      }
+  },
+  sortByRebounds: async (req,res) => {
+      try {
+          const players = await playerInfo.find();
+          let hasStats = players.filter(x => x.REB !== "NA");
+          let noStats = players.filter(x => x.REB == "NA");
+          hasStats.sort(function(a,b) {return b.REB - a.REB});
+          const sortedByRebs = hasStats.concat(noStats);
+          res.send(sortedByRebs);
+      }
+      catch(err) {
+          console.log(err)
+      }
+  },
+  sortByAst: async (req,res) => {
+      try {
+          const players = await playerInfo.find();
+          let hasStats = players.filter(x => x.AST !== "NA");
+          let noStats = players.filter(x => x.AST == "NA");
+          hasStats.sort(function(a,b) {return b.AST - a.AST});
+          const sortedByAsts = hasStats.concat(noStats);
+          res.send(sortedByAsts);
+      }
+      catch(err) {
+          console.log(err)
+      }
+  },
 }
