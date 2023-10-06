@@ -250,7 +250,7 @@ box-shadow: 0 0 5px #0075bd;
   padding: 10px 10px;
 }
 
-.selected {
+.selectSort {
   border: 3px solid #16a5fd;
 }
 @media (max-width: 1350px) and (min-width: 950px){

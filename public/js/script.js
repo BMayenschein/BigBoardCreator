@@ -32,14 +32,14 @@ sortByPointsBtn.addEventListener("click", sortByPoints);
 sortByReboundsBtn.addEventListener("click", sortByReb);
 sortByAstBtn.addEventListener("click", sortByAst);
 
-function removeSelectedClass() {
-    let selected = document.querySelector('.selected');
+function removeSelectSortClass() {
+    let selected = document.querySelector('.selectSort');
     if (!selected) {return}
-    selected.classList.remove('selected');
+    selected.classList.remove('selectSort');
 }
 
 async function sortByAst(e) {
-    if (e.target.classList.contains('selected')) { return }
+    if (e.target.classList.contains('selectSort')) { return }
     let sortedByAsts = [];
     try {
         let res = await fetch(`../ranked/sortByAst`)
@@ -49,14 +49,14 @@ async function sortByAst(e) {
         console.log(err)
     }
 
-    removeSelectedClass()
-    e.target.classList.add('selected');
+    removeSelectSortClass()
+    e.target.classList.add('selectSort');
     document.querySelector('.carousel-container').remove();
     renderCards(sortedByAsts);
 }
 
 async function sortByReb(e) {
-    if (e.target.classList.contains('selected')) { return }
+    if (e.target.classList.contains('selectSort')) { return }
     let sortedByRebs = [];
     try {
         let res = await fetch(`../ranked/sortByRebounds`)
@@ -66,14 +66,14 @@ async function sortByReb(e) {
         console.log(err)
     }
 
-    removeSelectedClass()
-    e.target.classList.add('selected');
+    removeSelectSortClass()
+    e.target.classList.add('selectSort');
     document.querySelector('.carousel-container').remove();
     renderCards(sortedByRebs);
 }
 
 async function sortByPoints(e) {
-    if (e.target.classList.contains('selected')) { return }
+    if (e.target.classList.contains('selectSort')) { return }
     let sortedByPoints = [];
     try {
         let res = await fetch(`../ranked/sortByPoints`)
@@ -83,15 +83,15 @@ async function sortByPoints(e) {
         console.log(err)
     }
 
-    removeSelectedClass()
-    e.target.classList.add('selected');
+    removeSelectSortClass()
+    e.target.classList.add('selectSort');
     document.querySelector('.carousel-container').remove();
     renderCards(sortedByPoints);
 }
 
 
 async function sortByPosition(e) {
-    if (e.target.classList.contains('selected')) { return }
+    if (e.target.classList.contains('selectSort')) { return }
     let sortedByPosition = [];
     try {
         let res = await fetch(`../ranked/sortByPosition`)
@@ -101,8 +101,8 @@ async function sortByPosition(e) {
         console.log(err)
     }
 
-    removeSelectedClass()
-    e.target.classList.add('selected');
+    removeSelectSortClass()
+    e.target.classList.add('selectSort');
     document.querySelector('.carousel-container').remove();
     renderCards(sortedByPosition);
 }
@@ -227,7 +227,7 @@ function renderCards(players) {
       });
 }
 async function sortByName(e) {
-    if (e.target.classList.contains('selected')) { return }
+    if (e.target.classList.contains('selectSort')) { return }
     let sortedByName = [];
     try {
         let res = await fetch(`../ranked/sortByName`)
@@ -237,8 +237,8 @@ async function sortByName(e) {
         console.log(err)
     }
 
-    removeSelectedClass()
-    e.target.classList.add('selected');
+    removeSelectSortClass()
+    e.target.classList.add('selectSort');
     document.querySelector('.carousel-container').remove();
     renderCards(sortedByName);
 }

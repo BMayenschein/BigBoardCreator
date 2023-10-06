@@ -277,6 +277,32 @@
 .teamLogo {
 	max-height: 60px;
 }
+
+.sortContainer {
+  display: flex;
+  justify-content: center;
+  padding: .5rem 0;
+}
+
+.sort {
+  background: linear-gradient(#404c53, #071922);
+}
+
+.sortBtn {
+  background: linear-gradient(#404c53, #071922);
+  color: white;
+  border: none;
+  padding: 10px 10px;
+}
+
+.selected {
+  border: 3px solid #16a5fd;
+}
+
+.selectSort {
+  border: 3px solid #16a5fd;
+}
+
   @media (max-width: 1350px) and (min-width: 950px){
   
     body {
@@ -386,5 +412,17 @@
     }
     .position, .spot {
       min-width: 30px;
+    }
+
+    .sortContainer {
+      padding-bottom: 0.5rem;
+    }
+    .sort {
+      display: flex;
+      padding: 0 1rem;
+    }
+    .sortBtn {
+      width: auto;
+      padding: 10px 5px;
     }
   }
