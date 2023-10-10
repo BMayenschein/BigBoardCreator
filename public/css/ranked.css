@@ -253,6 +253,31 @@ box-shadow: 0 0 5px #0075bd;
 .selectSort {
   border: 3px solid #16a5fd;
 }
+
+.in, .out, .goHome {
+  height: 1.25rem;
+  width: 1.25rem;
+  background-image: url(../img/login.svg);
+  background-size: cover;
+  background-color: inherit;
+  border: none;
+}
+
+.out {
+  background-image: url(../img/logout.svg);
+}
+
+.in:hover, .out:hover, .goHome:hover {
+  cursor: pointer;
+  scale: 1.1;
+}
+
+.goHome {
+  background-image: url(../img/basketball.svg);
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
 @media (max-width: 1350px) and (min-width: 950px){
 
   body {

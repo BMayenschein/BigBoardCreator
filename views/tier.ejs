@@ -11,15 +11,19 @@
     </head>
     <body>
         <nav>
-            <a href="/">Home</a>
+            <form action="/" id="home">
+                <input class="goHome" type="submit" value="" title="Home">
+            </form>
             <h1>Draft Tier List</h1>
             <div>
                 <% if (user) { %>
                     <form method="post" action="/auth/logout" id="logout">
-                        <input type="submit" value="Logout">
+                        <input class='out' type="submit" value="" title="Logout">
                     </form>
                 <%} else { %>
-                    <a href="/auth/login">Login</a>
+                    <form action="/auth/login">
+                        <input class='in' type="submit" value="" title="Login">
+                    </form>
                 <% } %>
             </div>
         </nav>
