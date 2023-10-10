@@ -5,6 +5,7 @@
 html, body {
     min-height: 100vh;
     font-size: 16px;
+    background-color: #f0f7fe;
 }
   
 body {
@@ -28,7 +29,7 @@ body nav a {
 }
   
 body nav a:visited, body nav a:link, #logout input {
-    background-color: #0075bd;
+    background: linear-gradient(#308df8, #0a75f0);
     color: white;
     padding: 10px 10px;
     text-align: center;
@@ -101,7 +102,7 @@ input[type="color"] {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    background-color: azure;
+    background-color: #f0f7fe;
     justify-content: center;
     border: 2px solid black;
 }
@@ -205,8 +206,42 @@ input[type="color"] {
 }
 
 
-@media only screen and (max-width: 1200px)  {
+@media only screen and (min-width: 350px)  {
     body {
-        width: 90%;
+        width: 310px;
     }
 }
+
+@media only screen and (min-width: 410px)  {
+    body {
+        width: 410px;
+    }
+
+    .pImg img {
+        height: 70px;
+        width: 80px;
+    }
+}
+
+@media only screen and (min-width: 650px)  {
+    body {
+        width: 610px;
+    }
+    .pImg img {
+        height: 90px;
+        width: 100px;
+    }
+}
+
+@media only screen and (min-width: 850px)  {
+    body {
+        width: 810px;
+    }
+}
+
+@media only screen and (min-width: 1250px)  {
+    body {
+        width: 1210px;
+    }
+}
+
