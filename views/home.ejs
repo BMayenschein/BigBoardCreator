@@ -26,11 +26,14 @@
             <% } %>
     </header>
     <main> 
-        <p class="about">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        <p class="about">Welcome to the ultimate resource for NBA draft enthusiasts and basketball fans alike. 
+            Our NBA Draft Tool is a powerful and user-friendly platform designed to empower you to create your very own big board, mock draft and tier list for the NBA draft cycle.
+             Whether you're a seasoned scout, a die-hard fan, or just curious about the future of the league, our tool is your go-to companion.
         </p>
+
+        <% if (!user) { %>
+        <p> Please login in order to save your board or tier list</p>
+        <%}%>
 
         <section class="big-screen option top">
             <div class="text">
