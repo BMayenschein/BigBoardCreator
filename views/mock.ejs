@@ -66,7 +66,11 @@
                 <%})%>
             </div>
             <section class="board">
-                <button class="simLottery">Sim Lottery</button> 
+                <div>
+                    <i title="Simulating the lottery will erase your current Mock Draft" class="fa-solid fa-circle-info"></i>
+                    <button class="simLottery">Sim Lottery</button>
+                </div>
+                
                 <div class="sortContainer">
                     <div class="sort">
                         <button class="sortBtn sortByName">Name</button>
@@ -85,5 +89,6 @@
         <% if (user) { %>
             <script>window.onload = getUserBoard()</script>
         <% } %>
+        <script src="https://kit.fontawesome.com/41c5cc6e36.js" crossorigin="anonymous"></script>
     </body>
 </html>
