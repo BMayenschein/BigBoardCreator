@@ -327,6 +327,14 @@
   width: 1.5rem;
 }
 
+.fa-solid {
+  padding-right: 10px;
+}
+
+.fa-solid:hover {
+  cursor: help;
+}
+
   @media (max-width: 1350px) and (min-width: 950px){
   
     body {
